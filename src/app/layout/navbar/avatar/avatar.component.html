@@ -1,0 +1,9 @@
+<div class="flex align-content-center">
+    @if(imageUrl() != null){
+        <img src="{{imageUrl()}}" alt="user-avatar" class="border-round-3xl avatar" [ngClass]="avatarSize()" />
+    } @else{
+        <div class="flex align-content-center justify-content-center unknown-user" [ngClass]="avatarSize()">
+            <fa-icon [icon]="'user'" size="3x" class="text-dark"></fa-icon>
+        </div>
+    }
+</div>
