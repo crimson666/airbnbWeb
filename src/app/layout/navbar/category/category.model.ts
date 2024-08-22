@@ -6,8 +6,8 @@ export type CategoryName = "ALL" | "AMAZING_VIEWS" | "OMG" | "TREEHOUSES"
 | "LUXES" | "CHEFS_KITCHEN";
 
 export interface Category {
-    icon: IconName, 
-    displayName: string,
-    technicalName?: CategoryName,
-    activated: boolean
+  icon: IconName,
+  displayName: string,
+  technicalName: CategoryName,
+  activated: boolean
 };

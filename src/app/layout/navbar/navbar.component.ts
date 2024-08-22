@@ -28,7 +28,7 @@ export class NavbarComponent implements OnInit {
   location : String = "Anywhere";
   guests : String =  "Add Guests";
   dates : String = "Any Week";
-  currentMenuItems : MenuItem[] | undefined = [];
+  currentMenuItems : MenuItem[] | undefined = this.fetchMenu();
   ngOnInit(): void {
     this.fetchMenu();
   }
@@ -39,8 +39,7 @@ export class NavbarComponent implements OnInit {
         styleClass: "font-bold"
       },
       {
-        label: "Log in",
-        styleClass: "font-bold"
+        label: "Log in"
       }
     ];
   }
