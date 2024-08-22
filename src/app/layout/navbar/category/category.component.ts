@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CategoryService } from './category.service';
 import { Category } from './category.model';
@@ -10,17 +10,16 @@ import { Category } from './category.model';
   templateUrl: './category.component.html',
   styleUrl: './category.component.scss'
 })
-export class CategoryComponent {
+export class CategoryComponent implements OnInit{
+ ngOnInit(): void {
+  this.fetchAllcategories();
+ }
 
- categoryService:CategoryService = inject(CategoryService);
+ categoryService = inject(CategoryService);
 
  categories:Category[] | undefined;
 
- currentActiveCategory : Category = this.categoryService.getCategoriesByDefault();
-
- OnInit(): void {
-  this.fetchAllcategories();
- }
+ currentActiveCategory = this.categoryService.getCategoryByDefault();
 
  private fetchAllcategories() {
   this.categories = this.categoryService.getCategories();

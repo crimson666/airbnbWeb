@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CategoryComponent } from './category/category.component';
 import { AvatarComponent } from './avatar/avatar.component';
@@ -8,6 +8,7 @@ import {MenuModule} from "primeng/menu";
 import {DialogService} from "primeng/dynamicdialog";
 import { MenuItem } from 'primeng/api';
 import { style } from '@angular/animations';
+import { ToastService } from '../toast.service';
 
 @Component({
   selector: 'app-navbar',
@@ -28,9 +29,11 @@ export class NavbarComponent implements OnInit {
   location : String = "Anywhere";
   guests : String =  "Add Guests";
   dates : String = "Any Week";
+  toastService = inject(ToastService);
   currentMenuItems : MenuItem[] | undefined = [];
   ngOnInit(): void {
-    this.fetchMenu();
+    this.currentMenuItems = this.fetchMenu();
+    this.toastService.send({severity:"info",summary:"Welcome to the app!",detail:"You are now logged in"});
   }
   private fetchMenu() {
     return[
@@ -39,8 +42,7 @@ export class NavbarComponent implements OnInit {
         styleClass: "font-bold"
       },
       {
-        label: "Log in",
-        styleClass: "font-bold"
+        label: "Log in"
       }
     ];
   }
